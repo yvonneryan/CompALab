@@ -1,0 +1,55 @@
+00001000 Starting Address
+Assembler used: EASy68K Editor/Assembler v5.16.01
+Created On: 26/01/2022 16:21:02
+
+00000000                             1  
+00001000                             2      ORG    $1000
+00001000                             3  START:                  ; first instruction of program
+00001000                             4      
+00001000  43F9 00001046              5      LEA text, A1
+00001006  303C 000E                  6      MOVE #14,D0         ; displays string stored at A1
+0000100A  4E4F                       7      TRAP #15
+0000100C                             8      
+0000100C  303C 0002                  9      MOVE #2, D0
+00001010  4E4F                      10      TRAP #15            ; Reads string from keyboard stored in D1
+00001012  3401                      11      MOVE D1, D2         ; Moves value in D1 to D2
+00001014                            12      
+00001014  303C 0005                 13      MOVE #5, D0         
+00001018  4E4F                      14      TRAP #15            ; Reads single character from keyboard
+0000101A  1601                      15      MOVE.B D1, D3       ; Moves value stored in D1 to D3
+0000101C  D642                      16      ADD D2, D3          ; Adds value in D2 with D3 and stores in D3
+0000101E                            17  
+0000101E                            18      
+0000101E  303C 0008                 19      MOVE #8, D0
+00001022  4E4F                      20      TRAP #15            ; Return time in hundredths of a second since midnight in D1
+00001024                            21      
+00001024  303C 000B                 22      MOVE #11, D0
+00001028  4E4F                      23      TRAP #15            ; Positions the cursor at row, col
+0000102A                            24      
+0000102A  303C 000D                 25      MOVE #13, D0
+0000102E  4E4F                      26      TRAP #15            ; Display the NULL terminated string at (A1) with CR, LF.
+00001030                            27      
+00001030  303C 0011                 28      MOVE #17, D0        
+00001034  4E4F                      29      TRAP #15            ; Combinations of trap codes 14 & 3 - displays string at A1 and displays decimal number in D1
+00001036                            30      
+00001036  303C 0012                 31      MOVE #18, D0
+0000103A  4E4F                      32      TRAP #15            ; Combination of trap codes 14 & 4 - displays string at A1 and reads number from keyboard into D1
+0000103C                            33      
+0000103C  303C 0015                 34      MOVE #21, D0
+00001040  4E4F                      35      TRAP #15            ;  Sets font colour
+00001042                            36  
+00001042  FFFF FFFF                 37      SIMHALT             
+00001046                            38  
+00001046= 45 6E 74 65 72 20 ...     39  text dc.b 'Enter points : ' ,0
+00001056                            40  
+00001056                            41      END    START       ; last line of source
+
+No errors detected
+No warnings generated
+
+
+SYMBOL TABLE INFORMATION
+Symbol-name         Value
+-------------------------
+START               1000
+TEXT                1046

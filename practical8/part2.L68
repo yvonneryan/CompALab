@@ -1,0 +1,41 @@
+00001000 Starting Address
+Assembler used: EASy68K Editor/Assembler v5.16.01
+Created On: 26/01/2022 16:22:55
+
+00001000                             1      ORG    $1000
+00001000                             2  START:                  ; first instruction of program
+00001000                             3      
+00001000  45F9 00001036              4      LEA Health, A2      ; Loads effective address of Health to A2
+00001006  1212                       5      MOVE.B (A2),D1      ; Move value in A2 to D1 to perform add operation
+00001008  5A01                       6      ADD.B #5,D1         ; Add the number 5 to D1
+0000100A  13C1 00001036              7      MOVE.B D1, Health   ; Move value from D1 back to Health after the operation is performed
+00001010                             8      
+00001010  1212                       9      MOVE.B (A2),D1      ; Move value in A2 to D1 to perform subtract operation
+00001012  5B01                      10      SUB.B #5, D1        ; Subtract the number 5 from value in D1
+00001014  13C1 00001036             11      MOVE.B D1, Health   ; Move value from D1 back to Health after the operation is performed
+0000101A                            12      
+0000101A  1212                      13      MOVE.B (A2),D1      ; Move value from A2 to D1 to perform multiply operation
+0000101C  C2FC 0002                 14      MULU #2,D1          ; Multiply value in D1 by 2
+00001020  13C1 00001036             15      MOVE.B D1, Health   ; Move value from D1 back to Health after the operation is performed
+00001026                            16      
+00001026  1212                      17      MOVE.B (A2),D1      ; Move value in A2 to D1 to perform divide operation
+00001028  82FC 0002                 18      DIVU #2,D1          ; Divide the value in D1 by 2
+0000102C  13C1 00001036             19      MOVE.B D1, Health   ; Move value in D1 to Health after the operation is performed
+00001032                            20      
+00001032                            21      
+00001032                            22  
+00001032  FFFF FFFF                 23      SIMHALT             ; halt simulator
+00001036                            24  
+00001036= 10                        25  Health dc.b $10
+00001037                            26  
+00001037                            27      END    START        ; last line of source
+
+No errors detected
+No warnings generated
+
+
+SYMBOL TABLE INFORMATION
+Symbol-name         Value
+-------------------------
+HEALTH              1036
+START               1000

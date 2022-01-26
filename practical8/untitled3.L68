@@ -1,0 +1,45 @@
+00001000 Starting Address
+Assembler used: EASy68K Editor/Assembler v5.16.01
+Created On: 26/01/2022 15:30:36
+
+00000000                             1  
+00001000                             2      ORG    $1000
+00001000                             3  START:                  ; first instruction of program
+00001000                             4      
+00001000  43F9 00001034              5      LEA text, A1
+00001006  303C 0002                  6      MOVE #2, D0
+0000100A  4E4F                       7      TRAP #15
+0000100C                             8      
+0000100C  303C 0005                  9      MOVE #5, D0
+00001010  4E4F                      10      TRAP #15
+00001012                            11      
+00001012  303C 0008                 12      MOVE #8, D0
+00001016  4E4F                      13      TRAP #15
+00001018                            14      
+00001018  303C 000B                 15      MOVE #11, D0
+0000101C  4E4F                      16      TRAP #15
+0000101E                            17      
+0000101E  303C 0011                 18      MOVE #17, D0
+00001022  4E4F                      19      TRAP #15
+00001024                            20      
+00001024  303C 0012                 21      MOVE #18, D0
+00001028  4E4F                      22      TRAP #15
+0000102A                            23      
+0000102A  303C 0015                 24      MOVE #21, D0
+0000102E  4E4F                      25      TRAP #15
+00001030                            26  
+00001030  FFFF FFFF                 27      SIMHALT             ; halt simulator
+00001034                            28  
+00001034= 45 6E 74 65 72 20 ...     29  text dc.b 'Enter a numbrt' ,0
+00001043                            30  
+00001043                            31      END    START       ; last line of source
+
+No errors detected
+No warnings generated
+
+
+SYMBOL TABLE INFORMATION
+Symbol-name         Value
+-------------------------
+START               1000
+TEXT                1034

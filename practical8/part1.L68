@@ -1,0 +1,33 @@
+00001000 Starting Address
+Assembler used: EASy68K Editor/Assembler v5.16.01
+Created On: 19/01/2022 15:56:20
+
+00000000                             1      
+00001000                             2     ORG    $1000
+00001000                             3  START:                  ; first instruction of program
+00001000                             4  
+00001000  43F9 00001020              5      LEA text, A1        ; Stores the string variable in A1
+00001006  303C 000E                  6      MOVE #14, D0        ; Moves value 14 into D0
+0000100A  4E4F                       7      TRAP #15            ; Value is read from D0,14 - the string stored is displayed
+0000100C  303C 0004                  8      MOVE #4, D0         ; Moves value 4 to D0
+00001010  4E4F                       9      TRAP #15            ; Reads value from D0, 4 - reads number entered from keyboard
+00001012  31C1 3000                 10      MOVE D1, $3000      ; Stores value at memory location 3000
+00001016  303C 0003                 11      MOVE #3, D0         ; Moves the value 3 into D0
+0000101A  4E4F                      12      TRAP #15            ; Reads value from D0, 3 - displays the points entered
+0000101C                            13      
+0000101C                            14  
+0000101C  FFFF FFFF                 15      SIMHALT             ; halt simulator
+00001020                            16  
+00001020= 50 6C 65 61 73 65 ...     17  text dc.b   'Please enter gamer points: ',0
+0000103C                            18         
+0000103C                            19      END    START        ; last line of source
+
+No errors detected
+No warnings generated
+
+
+SYMBOL TABLE INFORMATION
+Symbol-name         Value
+-------------------------
+START               1000
+TEXT                1020
