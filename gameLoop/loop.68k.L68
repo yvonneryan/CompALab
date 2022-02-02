@@ -1,0 +1,78 @@
+00001000 Starting Address
+Assembler used: EASy68K Editor/Assembler v5.16.01
+Created On: 02/02/2022 16:40:11
+
+00000000                             1  
+00001000                             2      ORG    $1000
+00001000                             3  START:                  ; first instruction of program
+00001000  11FC 0001 2000             4      MOVE.B #1, $2000
+00001006  1638 2000                  5      MOVE.B $2000, D3
+0000100A  11FC 0064 2010             6      MOVE.B #100, $2010
+00001010                             7      
+00001010  B678 0001                  8      CMP 1, D3
+00001014  6600 004C                  9      BNE END
+00001018  6000 0002                 10      BRA LOOP
+0000101C                            11      
+0000101C                            12  LOOP:
+0000101C  1638 2000                 13      MOVE.B $2000, D3
+00001020  B67C 0001                 14      CMP #1, D3
+00001024  6600 003C                 15      BNE END
+00001028  6100 000C                 16      BSR INPUT
+0000102C  6100 0014                 17      BSR UPDATE
+00001030  6100 0026                 18      BSR DRAW
+00001034  60E6                      19      BRA LOOP
+00001036                            20      
+00001036                            21  INPUT:
+00001036  103C 0004                 22      MOVE.B #4, D0
+0000103A  4E4F                      23      TRAP #15
+0000103C  11C1 2000                 24      MOVE.B D1, $2000
+00001040  4E75                      25      RTS
+00001042                            26      
+00001042                            27  UPDATE:
+00001042  1838 2010                 28      MOVE.B $2010, D4
+00001046  0444 000A                 29      SUB #10, D4
+0000104A  1838 2010                 30      MOVE.B $2010, D4
+0000104E                            31      
+0000104E  B87C 0000                 32      CMP #0, D4
+00001052  6700 0006                 33      BEQ CHANGE
+00001056  4E75                      34      RTS
+00001058                            35      
+00001058                            36  DRAW:
+00001058  4E75                      37      RTS
+0000105A                            38      
+0000105A                            39  CHANGE:
+0000105A  11FC 0000 2000            40      MOVE.B #0, $2000
+00001060  60F6                      41      BRA DRAW
+00001062                            42      
+00001062                            43  END:
+00001062  43F9 0000106E             44      LEA MSG1, A1
+00001068  103C 000E                 45      MOVE.B #14, D0
+0000106C  4E4F                      46      TRAP #15
+0000106E                            47      
+0000106E                            48     
+0000106E                            49  
+0000106E= 53 54 49 4C 4C 20 ...     50  MSG1 dc.b 'STILL FIGHTING ON', 0
+00001080= 47 41 4D 45 20 4F ...     51  MG2 dc.b 'GAME OVER', 0
+0000108A                            52  
+0000108A  FFFF FFFF                 53      SIMHALT             ; halt simulator
+0000108E                            54  
+0000108E                            55  * Put variables and constants here
+0000108E                            56  
+0000108E                            57      END    START        ; last line of source
+
+No errors detected
+No warnings generated
+
+
+SYMBOL TABLE INFORMATION
+Symbol-name         Value
+-------------------------
+CHANGE              105A
+DRAW                1058
+END                 1062
+INPUT               1036
+LOOP                101C
+MG2                 1080
+MSG1                106E
+START               1000
+UPDATE              1042
